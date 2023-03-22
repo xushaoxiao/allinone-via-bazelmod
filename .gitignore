@@ -1,0 +1,6 @@
+# bazel generated
+/bazel-*
+
+# IntelliJ generated
+.idea
+.ijwb

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.allinone.support;
+
+option java_package = "com.allinone.support.protobuf.generated";
+option java_multiple_files = true;
+option java_outer_classname = "PaginationProto";
+
+option go_package = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobuf/support";
+
+/* Pagination is the page information of Models query. */
+message Pagination {
+  // Current page, usually starts at 1.
+  int32 page = 1;
+  // Size specified, cloud-service default value if 20.
+  int32 size = 2;
+  // Total, represents the total of an model.
+  int64 total = 3;
+  // sort_by, default by created_at.
+  string sort_by = 4;
+  // sort type, default is desc.
+  enum SortType {
+    SORT_TYPE_DESC = 0; // desc.
+    SORT_TYPE_ASC = 1; // asc.
+  }
+  // sort type specified.
+  SortType sort_type = 5;
+}

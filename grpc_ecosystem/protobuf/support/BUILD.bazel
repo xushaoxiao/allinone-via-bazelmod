@@ -1,0 +1,45 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_java//java:defs.bzl", "java_proto_library")
+load("@rules_go//go:def.bzl", "go_library")
+load("@rules_go//proto:def.bzl", "go_proto_library")
+load("@rules_python//python:proto.bzl", "py_proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+FILES = [
+    "pagination",
+]
+
+# build: output proto libraries.
+[proto_library(
+    name = s + "_proto",
+    srcs = [s + ".proto"],
+) for s in FILES]
+
+# build: output java libraries.
+[java_proto_library(
+    name = s + "_java_proto",
+    deps = [":" + s + "_proto"],
+    visibility = ["//visibility:public"],
+) for s in FILES]
+
+# build: output go protobuf libraries.
+[go_proto_library(
+    name = s + "_go_proto",
+    protos = [":" + s + "_proto"],
+    importpath = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobuf/support",
+    visibility = ["//visibility:public"],
+) for s in FILES]
+
+# build: output go libraries.
+[go_library(
+     name = s + "_go",
+     embed = [":" + s + "_go_proto"],
+     importpath = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobuf/support",
+     visibility = ["//visibility:public"],
+ ) for s in FILES]
+
+[py_proto_library(
+     name = s + "_py_proto",
+     deps = [":" + s + "_proto"],
+) for s in FILES]

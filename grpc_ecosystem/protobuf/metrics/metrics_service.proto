@@ -1,0 +1,302 @@
+// Data telemetry are responsible for designing a fancy data structure to
+// collect data traffic.
+syntax = "proto3";
+
+package com.allinone.metrics;
+
+import "protobufs/support/pagination.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option java_package = "com.allinone.metrics.protobuf.generated";
+option java_multiple_files = true;
+option java_outer_classname = "MetricsProto";
+
+option go_package = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobuf/metrics";
+
+// Tracer is responsible for collecting the data details of an API callers.
+message Tracer {
+  // Long value, primary key.
+  uint64 id = 1;
+  // Model created timestamp.
+  int64 created_at = 2;
+  // Model created by someone.
+  string created_by = 3;
+  // Model latest updated timestamp.
+  int64 updated_at = 4;
+  // Model latest updated by someone.
+  string updated_by = 5;
+  // Model deleted timestamp.
+  int64 deleted_at = 6;
+  // project id.
+  string project = 7;
+  // api path.
+  string api_path = 8;
+  // feature id parse from project id and api path.
+  string feature = 9;
+  // span message.
+  Span span = 10;
+  // status of tracer.
+  string status = 11;
+
+  // Category definition.
+  enum Category {
+    CATEGORY_UNSPECIFIED = 0;
+    PULL = 1;
+    PUSH = 2;
+  }
+  // category of tracer.
+  Category category = 12;
+  // response status code.
+  uint32 status_code = 13;
+  // output text.
+  string output = 14;
+  // interval timestamp.
+  // compute by span.
+  uint64 interval = 15;
+  uint64 feature_id = 16;
+}
+
+// Span is responsible for collecting the data details of an API request.
+message Span {
+  // e.g. station_info, tms.
+  string data_item = 1;
+  // item count.
+  uint32 item_count = 2;
+  // payload after encrypted.
+  string payload = 3;
+  // data size.
+  uint64 size = 4;
+  // startedAt timestamp.
+  uint64 started_at = 5;
+  // endedAt timestamp.
+  uint64 ended_at = 6;
+}
+
+message TracerEvent {
+  // Model created by someone.
+  string created_by = 1;
+  // API name.
+  string feature = 2;
+  // span message.
+  Span span = 3;
+  // status of tracer.
+  string status = 4;
+  // category of tracer.
+  Tracer.Category category = 5;
+  // response status code.
+  uint32 status_code = 6;
+  // output text.
+  string output = 7;
+  string project = 8;
+  string api_path = 9;
+}
+
+// TelemetryService gRPC service is responsible for operating all telemetry actions.
+service TelemetryService {
+  // Upsert a datasource.
+  rpc Upsert(Tracer) returns (TracerResponse) {
+    option (google.api.http) = {
+      post: "/services/metrics/api/v1/tracer"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Create or update a tracer."
+      description: "Upsert a tracer to the server."
+      tags: "Telemetry"
+    };
+  }
+
+  // Get a specified tracer.
+  rpc Get(TracerRequest) returns (TracerResponse) {
+    option (google.api.http) = {
+      get: "/services/metrics/api/v1/tracer/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get a tracer by specified id."
+      description: "Get a tracer from the server."
+      tags: "Telemetry"
+    };
+  }
+
+  // Delete specified tracer.
+  rpc Delete(TracerRequest) returns (TracerResponse) {
+    option (google.api.http) = {
+      delete: "/services/metrics/api/v1/tracer/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Delete a tracer by specified id."
+      description: "Delete a tracer from the server."
+      tags: "Telemetry"
+    };
+  }
+
+  // Query tracers by specified condition.
+  // `GET /api/v1/tracer?exclude_deleted=true&id=1&pagination
+  // .page=0&pagination.size=10`
+  rpc Query(TracerQueryRequest) returns (TracerQueryResponse) {
+    option (google.api.http) = {
+      get: "/services/metrics/api/v1/tracer"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Query a tracer by specified filter conditions."
+      description: "Query a tracer from the server."
+      tags: "Telemetry"
+    };
+  }
+
+  // API for application that send the metrics data to telemetry service.
+  rpc TracerEventProxying(TracerEvent) returns (TracerResponse) {
+    option (google.api.http) = {
+      post: "/services/metrics/api/v1/tracer/event-proxying"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Send a data metrics event to grpc service."
+      description: "Send a data metrics event to grpc service."
+      tags: "Telemetry"
+    };
+  }
+
+  rpc RelativeRealTimeTracing(AnalysisRequest) returns (AnalysisResponse) {
+    option (google.api.http) = {
+      get: "/services/metrics/api/v1/tracer-analysis"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get relatively real time data metrics."
+      description: "Get relatively real time data metrics."
+      tags: "Telemetry"
+    };
+  }
+
+  rpc GlobalRealTimeTracing(GlobalMetricsRequest) returns (GlobalMetricsResponse) {
+    option (google.api.http) = {
+      get: "/services/metrics/api/v1/global-analysis"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get global metrics data analysis result."
+      description: "Get global metrics data analysis result. Includes requests count of PULL and PUSH."
+      tags: "Telemetry"
+    };
+  }
+}
+
+// Tracer request.
+message TracerRequest {
+  uint64 id = 1;
+  // optional condition, Only affects the Delete gRPC func.
+  optional uint64 deleted_before = 2;
+}
+
+// TracerResponse is a complete information supplement for tracer.
+message TracerResponse {
+  // Long value, primary key.
+  uint64 id = 1;
+  // Model created timestamp.
+  int64 created_at = 2;
+  // Model created by someone.
+  string created_by = 3;
+  // Model latest updated timestamp.
+  int64 updated_at = 4;
+  // Model latest updated by someone.
+  string updated_by = 5;
+  // Model deleted timestamp.
+  int64 deleted_at = 6;
+  // project entity.
+  string project = 7;
+  // api path.
+  string api_path = 8;
+  // feature id parse from project id and api path.
+  string feature = 9;
+  // span message.
+  Span span = 10;
+  // status of tracer.
+  string status = 11;
+  // category of tracer.
+  Tracer.Category category = 12;
+  // response status code.
+  uint32 status_code = 13;
+  // output.
+  string output = 14;
+  // interval timestamp.
+  uint64 interval = 15;
+  uint64 feature_id = 16;
+}
+
+// TracerQueryRequest tracer query conditions.
+message TracerQueryRequest {
+  // pagination condition.
+  // pagination.page and pagination.size must be send.
+  support.Pagination pagination = 1;
+  // excludes deleted.
+  optional bool exclude_deleted = 2;
+  // project condition.
+  optional string project = 3;
+  // feature condition.
+  optional string feature = 4;
+  // status of tracer.
+  optional string status = 5;
+  // category of tracer.
+  optional Tracer.Category category = 6;
+  // status code.
+  optional uint32 status_code = 7;
+  // internal range condition.
+  repeated uint64 internal_range = 8;
+}
+
+// TracerQueryResponse tracer query results.
+message TracerQueryResponse {
+  // pagination condition.
+  support.Pagination pagination = 1;
+  // tracer array.
+  repeated TracerResponse data = 2;
+}
+
+message AnalysisRequest {
+  // pagination condition.
+  support.Pagination pagination = 1;
+  // excludes deleted.
+  optional bool exclude_deleted = 2;
+}
+
+message AnalysisResponse {
+  // pagination condition.
+  support.Pagination pagination = 1;
+  repeated ProjectDetail data = 2;
+}
+
+// ProjectDetail desc of project.
+message ProjectDetail {
+  uint64 project_id = 1;
+  string project_name = 2;
+  string domain_name = 3;
+  string project_status = 4;
+  int32 api_count = 5;
+  int32 happened_requests_total = 6;
+  int32 happened_requests_success = 7;
+  repeated ApiDetail api_details = 8;
+}
+
+// ApiDetail desc of API.
+message ApiDetail {
+  uint64 api_id = 1;
+  string api_name = 2;
+  string api_type = 3;
+  uint64 latest_happened_at = 4;
+  int32 happened_requests_total = 5;
+  int32 happened_requests_success = 6;
+  int32 happened_requests_failure = 7;
+  string uri = 8;
+}
+
+message GlobalMetricsRequest {
+  // Nothing to accept.
+}
+
+// GlobalMetrics metrics global request count.
+message GlobalMetricsResponse {
+  // global happened pull requests.
+  int32 pull_requests = 1;
+  // global happened push requests.
+  int32 push_requests = 2;
+}
