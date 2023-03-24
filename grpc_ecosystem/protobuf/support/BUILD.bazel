@@ -3,6 +3,7 @@ load("@rules_java//java:defs.bzl", "java_proto_library")
 load("@rules_go//go:def.bzl", "go_library")
 load("@rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_python//python:proto.bzl", "py_proto_library")
+load("@rules_cc//cc:defs.bzl", "cc_proto_library", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -42,4 +43,16 @@ FILES = [
 [py_proto_library(
      name = s + "_py_proto",
      deps = [":" + s + "_proto"],
+) for s in FILES]
+
+[cc_proto_library(
+    name = s + "_cc_proto",
+    deps = [":" + s + "_proto"],
+    visibility = ["//visibility:public"],
+) for s in FILES]
+
+[cc_library(
+    name = s + "_cc",
+    deps = [":" + s + "_cc_proto"],
+    visibility = ["//visibility:public"],
 ) for s in FILES]
