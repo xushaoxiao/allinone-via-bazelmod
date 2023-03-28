@@ -1,7 +1,7 @@
 # bazel runtime configuration file
 
 # setting '--extra_execution_platforms' to match '--host_platforms'
-# configuration flags to fix the problem 'Type @bazel_tools//tools/python:toolchain_type: target platform @local_config_platform//:host: No toolchains found.'
+# configuration flags to fix the problem 'Type @bazel_tools//bazel/python:toolchain_type: target platform @local_config_platform//:host: No toolchains found.'
 # build --extra_execution_platforms
 
 # for platform-appropriate cxx opts

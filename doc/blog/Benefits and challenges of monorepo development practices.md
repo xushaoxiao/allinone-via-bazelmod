@@ -15,7 +15,7 @@ determine whether a monorepo is the best choice for your team.
 ## Monorepo VS. polyrepo for microservices
 
 As microservices architecture becomes more popular, teams tend to split their code into many repositories (polyrepos).
-Teams develop microservices independently, using different, problem-specific tools and programming languages. For
+Teams develop microservices independently, using different, problem-specific bazel and programming languages. For
 example, some developers may use open source projects like Python for artificial intelligence (AI), while others use
 Java or .NET to implements APIs.
 
@@ -61,7 +61,7 @@ Depending on your situation, the benefits of monorepos may outweigh their challe
 ## Misconceptions about monorepos
 
 If you have been developing apps in microservices architecture, you may have some misconceptions about monorepos. Some
-developers think that multiple programming languages and tools prevent using a single repo due to difficulties in
+developers think that multiple programming languages and bazel prevent using a single repo due to difficulties in
 creating the uniform build process. You can mitigate this by using containers, with each microservice built into the
 container image, and then deployed as an individual unit.
 
@@ -89,10 +89,10 @@ Each development team can independently work the microservice, build its contain
 affecting other teams. They can validate the microservice in a test environment before sending it into production, and 
 keep both the old and new versions available.
 
-**Containerization lets you deploy and test microservices independently without worrying about their different tools and
+**Containerization lets you deploy and test microservices independently without worrying about their different bazel and
 programming languages.**
 
-CI/CD tools can scale automatically and help you manage complex deployments so that you can build, test, and even deploy
+CI/CD bazel can scale automatically and help you manage complex deployments so that you can build, test, and even deploy
 individual microservices from within a larger monorepo.
 
 ## Deciding on a strategy that works for your team
