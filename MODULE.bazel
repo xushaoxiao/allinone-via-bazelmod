@@ -13,7 +13,7 @@ bazel_dep(name = "rules_java", version = "5.5.0")
 bazel_dep(name = "protobuf", version = "21.7", repo_name = "com_google_protobuf")
 
 ## build plugins
-bazel_dep(name = "platforms", version = "0.0.6")
+bazel_dep(name = "platforms", version = "0.0.8")
 bazel_dep(name = "gazelle", version = "0.29.0")
 bazel_dep(name = "bazel_skylib", version = "1.4.1")
 bazel_dep(name = "googletest", version = "1.12.1")
