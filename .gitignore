@@ -4,3 +4,5 @@
 # IntelliJ generated
 .idea
 .ijwb
+
+node_modules/
