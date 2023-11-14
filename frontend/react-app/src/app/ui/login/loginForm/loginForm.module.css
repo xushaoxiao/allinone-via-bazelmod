@@ -12,7 +12,7 @@
 }
 
 .form input {
-  width: 100px;
+  width: 100%;
   padding: 30px;
   border: 2px solid #2e374a;
   border-radius: 5px;
