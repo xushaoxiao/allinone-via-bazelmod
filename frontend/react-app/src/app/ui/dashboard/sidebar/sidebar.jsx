@@ -1,4 +1,6 @@
 import styles from "./sidebar.module.css";
+import Image from "next/image";
+import MenuLink from "./menuLink/menuLink";
 import {
   MdDashboard,
   MdSupervisedUserCircle,
@@ -9,7 +11,9 @@ import {
   MdAnalytics,
   MdPeople,
   MdOutlineSettings,
+  MdLogout,
 } from "react-icons/md";
+import { staticGenerationBailout } from "next/dist/client/components/static-generation-bailout";
 
 const menuItems = [
   {
@@ -74,19 +78,47 @@ const menuItems = [
   },
 ];
 
+const user = {
+  username: "Shaoxiao Xu"
+}
+
 const Sidebar = () => {
   return (
     <div className={styles.container}>
-      <ul>
+      <div className={styles.user}>
+        <Image
+          src={user.img || "/noavatar.png"}
+          alt=""
+          width="50"
+          height="50"
+          className={styles.userImage}
+        />
+        <div className={styles.userDetail}>
+          <span className={styles.username}>{user.username}</span>
+          <span className={styles.userTitle}>Administrator</span>
+        </div>
+      </div>
+      <ul className={styles.list}>
         {menuItems.map((cat) => {
           <li key={cat.title}>
-            <span className="styles.cat">{cat.title}</span>
+            <span className={styles.cat}>{cat.title}</span>
             {cat.list.map((item) => {
-              <div item={item} key={item.title} />
+              <MenuLink item={item} key={item.title} />
             })}
-          </li>;
+          </li>
         })}
       </ul>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className={styles.logout}>
+          <MdLogout />
+          Logout
+        </button>
+      </form>
     </div>
   );
 };
