@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  position: sticky;
   top: 40px;
 }
 

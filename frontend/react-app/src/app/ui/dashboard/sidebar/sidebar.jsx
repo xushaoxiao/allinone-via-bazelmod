@@ -14,6 +14,7 @@ import {
   MdLogout,
 } from "react-icons/md";
 import { staticGenerationBailout } from "next/dist/client/components/static-generation-bailout";
+// import { auth, signOut } from "@/app/auth";
 
 const menuItems = [
   {
@@ -83,6 +84,8 @@ const user = {
 }
 
 const Sidebar = () => {
+  // const { user } = await auth();
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -99,14 +102,14 @@ const Sidebar = () => {
         </div>
       </div>
       <ul className={styles.list}>
-        {menuItems.map((cat) => {
+        {menuItems.map((cat) => (
           <li key={cat.title}>
             <span className={styles.cat}>{cat.title}</span>
-            {cat.list.map((item) => {
+            {cat.list.map((item) => (
               <MenuLink item={item} key={item.title} />
-            })}
+            ))}
           </li>
-        })}
+        ))}
       </ul>
       <form
         action={async () => {

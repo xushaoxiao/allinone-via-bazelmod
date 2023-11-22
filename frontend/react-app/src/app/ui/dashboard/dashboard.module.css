@@ -1,14 +1,15 @@
-.container{
+.container {
   display: flex;
 }
 
-.menu{
+.menu {
   flex: 1;
   background-color: var(--bgSoft);
   padding: 20px;
+  min-height: 100vh;
 }
 
-.content{
+.content {
   flex: 4;
   padding: 20px;
 }
