@@ -8,12 +8,14 @@
 # common --enable_platform_specific_config
 
 # Enable Bzlmod
-build:bzlmod --enable_bzlmod
-build:bzlmod --check_direct_dependencies=error
+# build:bzlmod --enable_bzlmod
+# build:bzlmod --check_direct_dependencies=error
+build --enable_bzlmod 
+build --check_direct_dependencies=error
 
 # Enable Java 11 language features (https://github.com/bazelbuild/bazel/issues/14592)
-build --java_language_version=11
-build --tool_java_language_version=11
+build --java_language_version=17
+build --tool_java_language_version=17
 
 # Don't trigger --config=<host platform> when cross-compiling.
 build:android --noenable_platform_specific_config
@@ -40,3 +42,17 @@ build:ios --noenable_platform_specific_config
 # build:ubuntu1804_java11 --host_platform=//:rbe_ubuntu1804_java11_platform
 # build:ubuntu1804_java11 --platforms=//:rbe_ubuntu1804_java11_platform
 # build:ubuntu1804_java11 --config=remote_shared
+
+# build:gcc14 --cxxopt=-std=c++23
+build --cxxopt=-std=c++17
+
+
+# coverage runtime configuration
+coverage --enable_bzlmod
+coverage --combined_report=lcov
+coverage --action_env=COVERAGE_GCOV_OPTIONS=-b
+coverage -c dbg
+
+# test runtime configuration
+
+test --combined_report=lcov

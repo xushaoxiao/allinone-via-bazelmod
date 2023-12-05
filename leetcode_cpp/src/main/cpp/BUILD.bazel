@@ -1,0 +1,13 @@
+# Description:
+#   C++ utility tests for Bazel
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "leetcode_cc",
+    srcs = glob(
+        ["**/*.cc"],
+        exclude = ["hello_world.cc"],
+    ),
+    hdrs = glob(["**/*.h"]),
+    visibility = ["//visibility:public"],
+)

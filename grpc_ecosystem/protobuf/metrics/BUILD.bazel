@@ -1,19 +1,18 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@rules_go//go:def.bzl", "go_library")
 load("@rules_go//proto:def.bzl", "go_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
-proto_library(
-    name = "metrics_proto",
-    srcs = [
-#        "metrics_service.proto",
-    ],
-    visibility = ["//visibility:public"],
-    deps = [
-#        "//protobufs/support:support_proto",
-#        "//protoc-gen-openapiv2/options:options_proto",
-#        "@go_googleapis//google/api:annotations_proto",
-    ],
-)
+# proto_library(
+#     name = "metrics_proto",
+#     srcs = [
+#         "metrics_service.proto",
+#     ],
+#     visibility = ["//visibility:public"],
+#     deps = [
+#         "//google/api:api_proto",
+#         "//protobufs/support:pagination_proto",
+#         "//protoc-gen-openapiv2/options:options_proto",
+#     ],
+# )
 
 #go_proto_library(
 #    name = "metrics_go_proto",
@@ -34,3 +33,16 @@ proto_library(
 #    importpath = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobufs/metrics",
 #    visibility = ["//visibility:public"],
 #)
+
+# go_proto_library(
+#     name = "metrics_go_proto",
+#     compilers = ["@rules_go//proto:go_grpc"],
+#     importpath = "github.com/xushaoxiao/allinone-via-bazelmod/grpc_ecosystem/protobuf/metrics",
+#     proto = ":metrics_proto",
+#     visibility = ["//visibility:public"],
+#     deps = [
+#         "//google/api:annotations_proto",
+#         "//protobufs/support:pagination_proto",
+#         "//protoc-gen-openapiv2/options:annotations_proto",
+#     ],
+# )

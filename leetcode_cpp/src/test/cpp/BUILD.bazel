@@ -1,0 +1,22 @@
+# Description:
+#   C++ utility tests for Bazel
+package(default_visibility = ["//visibility:public"])
+
+cc_test(
+    name = "leetcode_cc_test",
+    size = "small",
+    srcs = glob(
+        ["**/*.cc"],
+    ),
+    copts = [
+        "-Iexternal/gtest/googletest/include",
+        "-Iexternal/gtest/googletest",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//leetcode_cpp/src/main/cpp:leetcode_cc",
+        "@googletest//:gtest_main",
+    ],
+)
+
+test_suite(name = "all_tests")

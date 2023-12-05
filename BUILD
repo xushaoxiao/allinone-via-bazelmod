@@ -1,17 +1,18 @@
-#load("@gazelle//:def.bzl", "gazelle")
+load("@gazelle//:def.bzl", "gazelle")
+
 #
 ## gazelle:prefix github.com/xushaoxiao/allinone-via-bazelmod
-#gazelle(name = "gazelle")
-#
-#gazelle(
-#    name = "gazelle-update-repos",
-#    args = [
-#        "-from_file=go.mod",
-#        "-to_macro=repositories.bzl%go_repositories",
-#        "-prune",
-#    ],
-#    command = "update-repos",
-#)
+gazelle(name = "gazelle")
+
+gazelle(
+    name = "gazelle-update-repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=repositories.bzl%go_repositories",
+        "-prune",
+    ],
+    command = "update-repos",
+)
 
 platform(
     name = "platform_mac_os",

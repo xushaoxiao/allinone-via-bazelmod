@@ -6,3 +6,5 @@
 .ijwb
 
 node_modules/
+genhtml/
+.vscode/
