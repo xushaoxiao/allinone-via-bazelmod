@@ -6,7 +6,7 @@ cc_test(
     name = "leetcode_cc_test",
     size = "small",
     srcs = glob(
-        ["**/*.cc"],
+        ["**/*_test.cc"],
     ),
     copts = [
         "-Iexternal/gtest/googletest/include",
