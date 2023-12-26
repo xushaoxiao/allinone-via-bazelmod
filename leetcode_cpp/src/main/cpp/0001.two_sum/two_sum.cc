@@ -16,22 +16,22 @@
 
 namespace leetcode {
 
-  using std::unordered_map;
-  using std::vector;
+using std::unordered_map;
+using std::vector;
 
-  // public:
-  vector<int> twoSum(const vector<int>& nums, int target) {
-    unordered_map<int, int> numMap;
-    int n = nums.size();
+// public:
+vector<int> twoSum(const vector<int>& nums, int target) {
+  unordered_map<int, int> numMap;
+  int n = nums.size();
 
-    for (int i = 0; i < n; i++) {
-      int complement = target - nums[i];
-      if (numMap.count(complement)) {
-        return {numMap[complement], i};
-      }
-      numMap[nums[i]] = i;
+  for (int i = 0; i < n; i++) {
+    int complement = target - nums[i];
+    if (numMap.count(complement)) {
+      return {numMap[complement], i};
     }
-
-    return {};  // No solution found.
+    numMap[nums[i]] = i;
   }
+
+  return {};  // No solution found.
+}
 }  // namespace leetcode

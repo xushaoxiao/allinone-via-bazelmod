@@ -16,40 +16,40 @@
 
 namespace leetcode {
 
-  /// @brief add two numbers.
-  /// @param l1 node 1.
-  /// @param l2 node 2.
-  /// @return header node.
-  // public:
-  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    ListNode* dummyHead = new ListNode(0);
-    ListNode* tail = dummyHead;
-    int digit1, digit2, carry = 0;
+/// @brief add two numbers.
+/// @param l1 node 1.
+/// @param l2 node 2.
+/// @return header node.
+// public:
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+  ListNode* dummyHead = new ListNode(0);
+  ListNode* tail = dummyHead;
+  int digit1, digit2, carry = 0;
 
-    while (l1 != nullptr || l2 != nullptr || carry != 0) {
-      if (l1 != nullptr) {
-          digit1 = l1->val;
-          l1 = l1->next;
-      } else {
-          digit1 = 0;
-      }
-      if (l2 != nullptr) {
-          digit2 = l2->val;
-          l2 = l2->next;
-      } else {
-          digit2 = 0;
-      }
-
-      int sum = digit1 + digit2 + carry;
-      int digit = sum % 10;
-      carry = sum / 10;
-
-      ListNode* newNode = new ListNode(digit);
-      tail->next = newNode;
-      tail = tail->next;
+  while (l1 != nullptr || l2 != nullptr || carry != 0) {
+    if (l1 != nullptr) {
+      digit1 = l1->val;
+      l1 = l1->next;
+    } else {
+      digit1 = 0;
+    }
+    if (l2 != nullptr) {
+      digit2 = l2->val;
+      l2 = l2->next;
+    } else {
+      digit2 = 0;
     }
 
-    return dummyHead->next;
+    int sum = digit1 + digit2 + carry;
+    int digit = sum % 10;
+    carry = sum / 10;
+
+    ListNode* newNode = new ListNode(digit);
+    tail->next = newNode;
+    tail = tail->next;
   }
+
+  return dummyHead->next;
+}
 
 }  // namespace leetcode

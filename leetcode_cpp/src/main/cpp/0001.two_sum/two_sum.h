@@ -16,14 +16,14 @@
 #define LEETCODE_CPP_SRC_MAIN_CPP_0001_TWO_SUM_TWO_SUM_H_
 
 #include <memory>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 namespace leetcode {
 
-  using std::vector;
+using std::vector;
 
-  vector<int> twoSum(const vector<int>& nums, int target);
+vector<int> twoSum(const vector<int>& nums, int target);
 
 }  // namespace leetcode
 

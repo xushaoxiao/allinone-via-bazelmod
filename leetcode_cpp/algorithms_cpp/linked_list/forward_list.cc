@@ -12,22 +12,4 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef LEETCODE_CPP_SRC_MAIN_CPP_0002_ADD_TWO_NUMBERS_ADD_TWO_NUMBERS_H_
-#define LEETCODE_CPP_SRC_MAIN_CPP_0002_ADD_TWO_NUMBERS_ADD_TWO_NUMBERS_H_
 
-namespace leetcode {
-
-struct ListNode {
-  /* data */
-  int val;
-  ListNode* next;
-  ListNode() : val(0), next(nullptr) {}
-  explicit ListNode(int val) : val(val), next(nullptr) {}
-  ListNode(int val, ListNode* next) : val(val), next(next) {}
-};
-
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
-
-}  // namespace leetcode
-
-#endif  // LEETCODE_CPP_SRC_MAIN_CPP_0002_ADD_TWO_NUMBERS_ADD_TWO_NUMBERS_H_
