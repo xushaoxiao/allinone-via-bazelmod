@@ -20,7 +20,7 @@ bazel_dep(name = "rules_nodejs", version = "6.0.2")
 # build plugins
 bazel_dep(name = "rules_oci", version = "1.4.3")
 bazel_dep(name = "platforms", version = "0.0.8")
-bazel_dep(name = "gazelle", version = "0.34.0")
+bazel_dep(name = "gazelle", version = "0.35.0")
 bazel_dep(name = "bazel_skylib", version = "1.5.0")
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.5.0")
 bazel_dep(name = "googletest", version = "1.14.0.bcr.1")
