@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "leetcode_cpp/src/main/cpp/0026.remove_duplicates_from_sorted_array/remove_duplicates_from_sorted_array.h"
+#ifndef LEETCODE_CPP_SRC_MAIN_CPP_0015_3_SUM_THREE_SUM_H_
+#define LEETCODE_CPP_SRC_MAIN_CPP_0015_3_SUM_THREE_SUM_H_
 
 #include <vector>  // Add this line
 
@@ -20,19 +21,8 @@ namespace leetcode {
 
 using std::vector;
 
-int removeDuplicates(vector<int>& nums) {
-  if (nums.empty()) {
-    return 0;
-  }
+vector<vector<int>> threeSum(vector<int>& nums);
 
-  int i = 0;
-  for (int j = 1; j < nums.size(); j++) {
-    if (nums[j] != nums[i]) {
-      i++;
-      nums[i] = nums[j];
-    }
-  }
-
-  return i + 1;
-}
 }  // namespace leetcode
+
+#endif  // LEETCODE_CPP_SRC_MAIN_CPP_0015_3_SUM_THREE_SUM_H_

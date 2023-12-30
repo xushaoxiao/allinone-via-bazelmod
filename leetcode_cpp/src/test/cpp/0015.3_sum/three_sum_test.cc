@@ -12,27 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "leetcode_cpp/src/main/cpp/0026.remove_duplicates_from_sorted_array/remove_duplicates_from_sorted_array.h"
+#include "leetcode_cpp/src/main/cpp/0015.3_sum/three_sum.h"
 
 #include <vector>  // Add this line
+
+#include "gtest/gtest.h"
 
 namespace leetcode {
 
 using std::vector;
 
-int removeDuplicates(vector<int>& nums) {
-  if (nums.empty()) {
-    return 0;
-  }
-
-  int i = 0;
-  for (int j = 1; j < nums.size(); j++) {
-    if (nums[j] != nums[i]) {
-      i++;
-      nums[i] = nums[j];
-    }
-  }
-
-  return i + 1;
+TEST(Three_Sum, case_one) {
+  vector<int> height = {-1, 0, 1, 2, -1, -4};
+  vector<vector<int>> expected = {{-1, -1, 2}, {-1, 0, 1}};
+  vector<vector<int>> actual = threeSum(height);
+  EXPECT_EQ(expected, actual);
 }
+
+TEST(Three_Sum, case_two) {
+  vector<int> height = {0, 1, 1};
+  vector<vector<int>> expected = {};
+  vector<vector<int>> actual = threeSum(height);
+  EXPECT_EQ(expected, actual);
+}
+
+TEST(Three_Sum, case_three) {
+  vector<int> height = {0, 0, 0};
+  vector<vector<int>> expected = {{0, 0, 0}};
+  vector<vector<int>> actual = threeSum(height);
+  EXPECT_EQ(expected, actual);
+}
+
 }  // namespace leetcode
