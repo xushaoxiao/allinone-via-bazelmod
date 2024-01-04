@@ -23,6 +23,8 @@ using std::vector;
 
 vector<vector<int>> threeSum(vector<int>& nums);
 
+vector<vector<int>> threeSum2(vector<int>& nums);
+
 }  // namespace leetcode
 
 #endif  // LEETCODE_CPP_SRC_MAIN_CPP_0015_3_SUM_THREE_SUM_H_

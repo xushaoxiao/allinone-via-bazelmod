@@ -43,4 +43,43 @@ TEST(Three_Sum, case_three) {
   EXPECT_EQ(expected, actual);
 }
 
+TEST(Three_Sum, case_four) {
+  vector<int> height = {-2, 0, 3, -1, 4, 0, 3, 4, 1, 1, 1, -3, -5, 4, 0};
+  vector<vector<int>> expected = {{-5, 1, 4},  {-3, -1, 4}, {-3, 0, 3},
+                                  {-2, -1, 3}, {-2, 1, 1},  {-1, 0, 1},
+                                  {0, 0, 0}};
+  vector<vector<int>> actual = threeSum(height);
+  EXPECT_EQ(expected, actual);
+}
+
+TEST(Three_Sum2, case_one) {
+  vector<int> height = {-1, 0, 1, 2, -1, -4};
+  vector<vector<int>> expected = {{-1, 0, 1}, {-1, -1, 2}};
+  vector<vector<int>> actual = threeSum2(height);
+  EXPECT_EQ(expected, actual);
+}
+
+TEST(Three_Sum2, case_two) {
+  vector<int> height = {0, 1, 1};
+  vector<vector<int>> expected = {};
+  vector<vector<int>> actual = threeSum2(height);
+  EXPECT_EQ(expected, actual);
+}
+
+TEST(Three_Sum2, case_three) {
+  vector<int> height = {0, 0, 0};
+  vector<vector<int>> expected = {{0, 0, 0}};
+  vector<vector<int>> actual = threeSum2(height);
+  EXPECT_EQ(expected, actual);
+}
+
+TEST(Three_Sum2, case_four) {
+  vector<int> height = {-2, 0, 3, -1, 4, 0, 3, 4, 1, 1, 1, -3, -5, 4, 0};
+  vector<vector<int>> expected = {{-5, 1, 4},  {-3, -1, 4}, {-3, 0, 3},
+                                  {-2, -1, 3}, {-2, 1, 1},  {-1, 0, 1},
+                                  {0, 0, 0}};
+  vector<vector<int>> actual = threeSum2(height);
+  EXPECT_EQ(expected, actual);
+}
+
 }  // namespace leetcode
