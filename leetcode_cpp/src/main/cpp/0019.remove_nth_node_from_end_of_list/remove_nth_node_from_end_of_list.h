@@ -12,17 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_
-#define LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_
-
-#include <vector>
+#ifndef LEETCODE_CPP_SRC_MAIN_CPP_0019_REMOVE_NTH_NODE_FROM_END_OF_LIST_REMOVE_NTH_NODE_FROM_END_OF_LIST_H_
+#define LEETCODE_CPP_SRC_MAIN_CPP_0019_REMOVE_NTH_NODE_FROM_END_OF_LIST_REMOVE_NTH_NODE_FROM_END_OF_LIST_H_
 
 namespace leetcode {
 
-using std::vector;
+typedef struct ListNode {
+  int val;
+  ListNode* next;
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
+} ListNode;
 
-int removeDuplicates(vector<int>& nums);
+ListNode* removeNthFromEnd(ListNode* head, int n);
+
+ListNode* removeNthFromEnd2(ListNode* head, int n);
 
 }  // namespace leetcode
 
-#endif  // LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_
+#endif  // LEETCODE_CPP_SRC_MAIN_CPP_0019_REMOVE_NTH_NODE_FROM_END_OF_LIST_REMOVE_NTH_NODE_FROM_END_OF_LIST_H_

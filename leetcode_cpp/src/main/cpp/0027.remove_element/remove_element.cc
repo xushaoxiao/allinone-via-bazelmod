@@ -12,17 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_
-#define LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_
+#include "leetcode_cpp/src/main/cpp/0027.remove_element/remove_element.h"
 
-#include <vector>
+#include <vector>  // Add this line
 
 namespace leetcode {
-
 using std::vector;
 
-int removeDuplicates(vector<int>& nums);
-
+int removeElement(vector<int>& nums, int val) {
+  int i = 0;
+  for (int j = 0; j < nums.size(); j++) {
+    if (nums[j] != val) {
+      nums[i] = nums[j];
+      i++;
+    }
+  }
+  return i;
+}
 }  // namespace leetcode
-
-#endif  // LEETCODE_CPP_SRC_MAIN_CPP_0026_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H_

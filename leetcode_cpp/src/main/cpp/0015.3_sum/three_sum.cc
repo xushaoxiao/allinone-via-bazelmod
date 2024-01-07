@@ -32,7 +32,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 
   for (int i = 0; i < n - 2; i++) {
     // 跳过重复元素 i > 0 && nums[i] != nums[i-1])
-    if ((i == 0) || (i > 0) && (nums[i] != nums[i - 1])) {
+    if ((i == 0) || (i > 0 && nums[i] != nums[i - 1])) {
       int lo = i + 1;
       int hi = n - 1;
       while (lo < hi) {
