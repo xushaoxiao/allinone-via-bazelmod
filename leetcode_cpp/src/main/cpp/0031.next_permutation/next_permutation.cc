@@ -19,6 +19,7 @@
 namespace leetcode {
 
 using std::reverse;
+using std::swap;
 using std::vector;
 
 void nextPermutation(vector<int>& nums) {
@@ -33,17 +34,11 @@ void nextPermutation(vector<int>& nums) {
     while (j >= 0 && nums[j] <= nums[i]) {
       --j;
     }
-    swap(nums, i, j);
+    swap(nums[i], nums[j]);
   }
 
   // Reverse the elements from i + 1 to the end.
   reverse(nums.begin() + i + 1, nums.end());
-}
-
-void swap(vector<int>& nums, int i, int j) {
-  int tmp = nums[i];
-  nums[i] = nums[j];
-  nums[j] = tmp;
 }
 
 }  // namespace leetcode

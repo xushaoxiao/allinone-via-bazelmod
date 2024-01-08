@@ -23,8 +23,6 @@ using std::vector;
 
 void nextPermutation(vector<int>& nums);
 
-void swap(vector<int>& nums, int i, int j);
-
 }  // namespace leetcode
 
 #endif  // LEETCODE_CPP_SRC_MAIN_CPP_0031_NEXT_PERMUTATION_NEXT_PERMUTATION_H_
