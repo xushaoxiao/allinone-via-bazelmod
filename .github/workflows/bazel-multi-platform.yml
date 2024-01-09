@@ -1,0 +1,24 @@
+name: Bazel on multiple platforms
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup bazel
+        uses: jwlawson/actions-setup-bazel@v1
+        with:
+          bazel-version: "7.0.0"
+      - name: Use bazel
+        run: bazel --version
+
+      - name: Build
+        run: bazel build //...
+
+      - name: Test
+        run: bazel test //...
