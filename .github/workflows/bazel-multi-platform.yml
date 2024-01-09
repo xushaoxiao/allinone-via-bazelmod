@@ -10,10 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup bazel
-        uses: jwlawson/actions-setup-bazel@v1
+      - uses: actions/checkout@v3
+      - uses: bazelbuild/setup-bazelisk@v2
+      - name: Mount bazel cache  # Optional
+        uses: actions/cache@v3
         with:
-          bazel-version: "7.0.0"
+          path: "~/.cache/bazel"
+          key: bazel
       - name: Use bazel
         run: bazel --version
 
