@@ -10,20 +10,13 @@ jobs:
   build:
     runs-on: macOS-13
     steps:
-      # - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       # - uses: bazelbuild/setup-bazelisk@v3
       # - name: Mount bazel cache # Optional
       #   uses: actions/cache@v4
       #   with:
       #     path: "~/.cache/bazel"
       #     key: bazel
-      - name: env
-        run: |
-          pwd
-          ls -lart
-          cd ..
-          pwd
-          ls -lart
       - name: Install Bazel
         run: |
           brew update
