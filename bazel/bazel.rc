@@ -43,8 +43,8 @@ build:ios --noenable_platform_specific_config
 # build:ubuntu1804_java11 --platforms=//:rbe_ubuntu1804_java11_platform
 # build:ubuntu1804_java11 --config=remote_shared
 
-# build:gcc14 --cxxopt=-std=c++23
-build --cxxopt=-std=c++17
+# build:gcc14 --cxxopt=-std=c++14
+build --cxxopt=-std=c++14
 
 
 # coverage runtime configuration

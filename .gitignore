@@ -1,5 +1,6 @@
 # bazel generated
 /bazel-*
+bazel-*
 
 # IntelliJ generated
 .idea
