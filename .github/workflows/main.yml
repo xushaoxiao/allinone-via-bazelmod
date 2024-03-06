@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Bazel
-        run: sudo apt-get update && sudo apt-get upgrade && sudo apt-get install bazel
+        run: sudo apt install apt-transport-https curl gnupg -y
+          curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
+          sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+
+          sudo apt update && sudo apt install bazel -y
+
       - name: Use bazel
         run: bazel --version
 
