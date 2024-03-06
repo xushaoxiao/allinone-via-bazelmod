@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-macos-13
+    runs-on: macOS-latest
     steps:
       # - uses: actions/checkout@v4
       # - uses: bazelbuild/setup-bazelisk@v3
