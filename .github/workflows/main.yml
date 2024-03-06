@@ -17,12 +17,15 @@ jobs:
       #   with:
       #     path: "~/.cache/bazel"
       #     key: bazel
+      - name: env
+        run: |
+          pwd
+          ls -lart
       - name: Install Bazel
         run: |
           brew update
           brew unlink bazelisk
           brew install bazel
-          ls -lart
           bazel --version
       - name: Build
         run: bazel build //...
