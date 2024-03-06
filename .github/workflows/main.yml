@@ -14,7 +14,7 @@ jobs:
         run: sudo apt install g++ unzip zip
           sudo apt-get install default-jdk
           chmod +x bazel-7.0.2-installer-linux-x86_64.sh
-          ./bazel-7.0.2-installer-linux-x86_64.sh --user
+          ./bazel-7.0.2-installer-linux-x86_64.sh
       - name: Use bazel
         run: bazel --version
 
