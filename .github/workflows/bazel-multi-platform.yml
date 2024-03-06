@@ -17,6 +17,8 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
+      - name: Install Bazel
+        run: apt install bazel@7.0.0
       - name: Use bazel
         run: bazel --version
 
