@@ -21,6 +21,9 @@ jobs:
         run: |
           pwd
           ls -lart
+          cd ..
+          pwd
+          ls -lart
       - name: Install Bazel
         run: |
           brew update
