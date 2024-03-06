@@ -1,0 +1,22 @@
+name: Bazel CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Bazel
+        run: sudo apt-get update && sudo apt-get upgrade && sudo apt-get install bazel
+      - name: Use bazel
+        run: bazel --version
+
+      - name: Build
+        run: bazel build //...
+
+      - name: Test
+        run: bazel test //...
