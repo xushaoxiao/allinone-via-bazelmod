@@ -26,7 +26,7 @@
     "typescript": "^5"
   },
   "devDependencies": {
-    "eslint": "^8",
+    "eslint": "^9.0.0",
     "eslint-config-next": "14.2.3",
     "postcss-import": "^16.0.0"
   }
