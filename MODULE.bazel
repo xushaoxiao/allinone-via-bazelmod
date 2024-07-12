@@ -20,7 +20,7 @@ bazel_dep(name = "aspect_rules_js", version = "1.42.3")
 bazel_dep(name = "rules_nodejs", version = "6.2.0")
 
 # build plugins
-bazel_dep(name = "rules_oci", version = "1.7.6")
+bazel_dep(name = "rules_oci", version = "1.8.0")
 bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.7.1")
